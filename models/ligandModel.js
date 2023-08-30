@@ -8,30 +8,30 @@ const dataSchema = new Schema({
   },
   LogFC_Str_vs_Con: {
     x: {
-        type: Number,
+        type: Double,
         required: true
       },
       y: {
-        type: Number,
+        type: Double,
         required: true
       }
   },
   logFC_StrokeP4_vs_ControlP2: {
-    type: Number,
+    type: Double,
     required: true
   },
   FDR_Str_vs_Con: {
     x: {
-      type: Number,
+      type: Double,
       required: true
     },
     y: {
-      type: Number,
+      type: Double,
       required: true
     }
   },
   FDR_StrokeP4_vs_ControlP2: {
-    type: Number,
+    type: Double,
     required: true
   },
   receptor: {
@@ -69,4 +69,4 @@ const dataSchema = new Schema({
 });
 
 // Creating the model
-const DataModel = mongoose.model('DataModel', dataSchema);
+const DataModel = mongoose.model('ligand', dataSchema);
