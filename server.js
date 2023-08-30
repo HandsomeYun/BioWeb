@@ -6,15 +6,20 @@ const express = require("express")
 const app = express()
 const port = process.env.PORT || 3000;
 const cors = require("cors")
+const Router = require('./routes/route.js');
+
 
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 app.use(cors())
 
+//routes
+app.use('/', Router);
+
 //create  an example rout
-app.get("/", cors(), async(req, res) => {
-    res.send("this is working")
-})
+// app.get("/", cors(), async(req, res) => {
+//     res.send("this is working")
+// })
 
 console.log(process.env);
 

@@ -8,30 +8,30 @@ const dataSchema = new Schema({
   },
   LogFC_Str_vs_Con: {
     x: {
-        type: Double,
+        type: Number,
         required: true
       },
       y: {
-        type: Double,
+        type: Number,
         required: true
       }
   },
   logFC_StrokeP4_vs_ControlP2: {
-    type: Double,
+    type: Number,
     required: true
   },
   FDR_Str_vs_Con: {
     x: {
-      type: Double,
+      type: Number,
       required: true
     },
     y: {
-      type: Double,
+      type: Number,
       required: true
     }
   },
   FDR_StrokeP4_vs_ControlP2: {
-    type: Double,
+    type: Number,
     required: true
   },
   receptor: {
