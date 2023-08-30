@@ -1,12 +1,10 @@
-const ligands = require('../models/ligandModel');
+const ligands = require('../../../models/ligandModel');
 const express = require('express');
 const router = express.Router();
 const path = require('path')
 
 
 router.get("/", async(req, res) =>{
-
-
     try{
         const ligandName = "Spp1";
 

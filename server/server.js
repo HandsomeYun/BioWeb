@@ -6,7 +6,7 @@ const express = require("express")
 const app = express()
 const port = process.env.PORT || 3000;
 const cors = require("cors")
-const Router = require('./routes/route.js');
+const Router = require('./server/node_modules/routes/route.js');
 
 
 app.use(express.urlencoded({extended: true}))
