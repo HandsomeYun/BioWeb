@@ -68,5 +68,4 @@ const dataSchema = new Schema({
   }
 });
 
-// Creating the model
-const DataModel = mongoose.model('ligand', dataSchema);
+module.exports = mongoose.model('ligand', dataSchema);
