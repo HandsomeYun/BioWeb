@@ -6,7 +6,7 @@ const express = require("express")
 const app = express()
 const port = process.env.PORT || 3000;
 const cors = require("cors")
-const Router = require('./server/node_modules/routes/route.js');
+const Router = require('./routes/route.js');
 
 
 app.use(express.urlencoded({extended: true}))
@@ -15,6 +15,7 @@ app.use(cors())
 
 //routes
 app.use('/', Router);
+//app.use('/FindByLigand', Router);
 
 //create  an example rout
 // app.get("/", cors(), async(req, res) => {
