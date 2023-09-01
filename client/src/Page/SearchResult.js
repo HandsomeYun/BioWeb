@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
 import Graph from 'react-graph-vis';
@@ -44,46 +44,40 @@ function SearchResult() {
                         data.forEach(item => {
                             const edge1Str = `${item.ligand}->${item.receptor}`;
                             const edge2Str = `${item.receptor}->${item.receptor_cell}`;
-                            const graphKey = `${item.ligand}-${item.ligand_cell}`;
+                            const graphKey = `${item.ligand}`;
 
                             // If the combination doesn't have a graph yet, initialize one
                             if (!graphs[graphKey]) {
                                 graphs[graphKey] = {
-                                    nodes: [],
+                                    nodes: [{ id: item.ligand, label: item.ligand, title: item.ligand, color: 'green', size: 100, font: { 
+                                        face: 'Arial',  // Set the font-face of the ligand node to 'Arial' or any other font you prefer.
+                                        size: 50    // Optionally, change the font-color for ligand to red.
+                                    }}],
                                     edges: [],
-                                    nodeIds: new Set(),
+                                    receptorNodeIds: new Set(),
                                     edgeSet: new Set()
                                 };
                             }
 
-                            const { nodes, edges, nodeIds, edgeSet } = graphs[graphKey];
+                            const { nodes, edges, receptorNodeIds, edgeSet } = graphs[graphKey];
 
-                            // Check if ligand node exists
-                            if (!nodeIds.has(item.ligand)) {
-                                nodes.push({ id: item.ligand, label: item.ligand, title: item.ligand });
-                                nodeIds.add(item.ligand);
+                            // Add receptor node if it doesn't exist
+                            if (!receptorNodeIds.has(item.receptor)) {
+                                nodes.push({ id: item.receptor, label: item.receptor, title: item.receptor, color: 'orange', value:10});
+                                receptorNodeIds.add(item.receptor);
                             }
-
-                            // Check if receptor node exists
-                            if (!nodeIds.has(item.receptor)) {
-                                nodes.push({ id: item.receptor, label: item.receptor, title: item.receptor });
-                                nodeIds.add(item.receptor);
-                            }
-
-                            // Check if receptor_cell node exists
-                            if (!nodeIds.has(item.receptor_cell)) {
-                                nodes.push({ id: item.receptor_cell, label: item.receptor_cell, title: item.receptor_cell });
-                                nodeIds.add(item.receptor_cell);
-                            }
+                            
+                            // Add receptor_cell node (always, since they should form a 360-degree pattern around their receptor)
+                            nodes.push({ id: `${item.receptor}-${item.receptor_cell}`, label: item.receptor_cell, title: item.receptor_cell, color: 'turquoise', size:15});
 
                             // Add edges if they don't exist
                             if (!edgeSet.has(edge1Str)) {
-                                edges.push({ from: item.ligand, to: item.receptor });
+                                edges.push({ from: item.ligand, to: item.receptor, length:250 });
                                 edgeSet.add(edge1Str);
                             }
 
                             if (!edgeSet.has(edge2Str)) {
-                                edges.push({ from: item.receptor, to: item.receptor_cell });
+                                edges.push({ from: item.receptor, to: `${item.receptor}-${item.receptor_cell}`, length: 50 });
                                 edgeSet.add(edge2Str);
                             }
                         });
@@ -108,37 +102,47 @@ function SearchResult() {
 
     const options = {
         layout: {
-            hierarchical: {
-                enabled: true,
-                levelSeparation: 150,
-                nodeSpacing: 100,
-                treeSpacing: 200,
-                blockShifting: true,
-                edgeMinimization: true,
-                parentCentralization: true,
-                direction: "UD", // "UD" for top-to-bottom layout
-                sortMethod: "directed" // "directed" to follow the edges' direction
-            }
+            improvedLayout: true,
         },
         edges: {
             color: "#000000"
         },
         physics: {
-            enabled: false // Disable physics to allow zooming and panning
+            enabled: true,
+            barnesHut: {
+                gravitationalConstant: -3000,
+                centralGravity: 0.5,
+                springLength: 95,
+                springConstant: 0.18,
+                damping: 0.83,
+                avoidOverlap: 1
+            }
         },
         interaction: {
             zoomView: true,
             dragView: true
         },
         nodes: {
-            shape: 'dot',
+            shape: 'circle',
             scaling: {
-                min: 20, // Adjust as needed
-                max: 50  // Adjust as needed
+                min: 10,
+                max: 40,
+                customScalingFunction: (min, max, total, value) => {
+                    return value;  // Just return the value, effectively disabling scaling
+                }
             },
             font: {
-                size: 12,
-                face: 'Tahoma'
+                size: 15,
+                face: 'Tahoma',
+                background: 'transparent', // Set a transparent background for the font
+                strokeWidth: 0,  // No border around the text
+                align: 'center'  // Center the text inside the node
+            },
+            chosen: { // Only include this if nothing else works
+                node: function(values, id, selected, hovering) {
+                    values.color = 'grey';  // or whatever logic you have for color
+                    values.label = 'center'; // Force center alignment
+                }
             }
         }
     };
@@ -180,7 +184,7 @@ function SearchResult() {
                         <div key={index}>
                             <h3>Graph: {index + 1}</h3>
                             <div className="graph-container">
-                            <Graph graph={graph} options={options} />
+                                <Graph graph={graph} options={options} />
                             </div>
                         </div>
                     ))
