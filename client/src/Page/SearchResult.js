@@ -39,56 +39,65 @@ function SearchResult() {
                 .then(response => response.json())
                 .then(data => {
                     if (Array.isArray(data)) {
-                        const graphs = {};
+                        // Group by ligand first
+                        const groupedByCell = {};
 
                         data.forEach(item => {
-                            const edge1Str = `${item.ligand}->${item.receptor}`;
-                            const edge2Str = `${item.receptor}->${item.receptor_cell}`;
-                            const graphKey = `${item.ligand}`;
-
-                            // If the combination doesn't have a graph yet, initialize one
-                            if (!graphs[graphKey]) {
-                                graphs[graphKey] = {
-                                    nodes: [{ id: item.ligand, label: item.ligand, title: item.ligand, color: 'green', size: 100, font: { 
-                                        face: 'Arial',  // Set the font-face of the ligand node to 'Arial' or any other font you prefer.
-                                        size: 50    // Optionally, change the font-color for ligand to red.
-                                    }}],
-                                    edges: [],
-                                    receptorNodeIds: new Set(),
-                                    edgeSet: new Set()
-                                };
+                            if (!groupedByCell[item.ligand_cell]) {
+                                groupedByCell[item.ligand_cell] = [];
                             }
-
-                            const { nodes, edges, receptorNodeIds, edgeSet } = graphs[graphKey];
-
-                            // Add receptor node if it doesn't exist
-                            if (!receptorNodeIds.has(item.receptor)) {
-                                nodes.push({ id: item.receptor, label: item.receptor, title: item.receptor, color: 'orange', value:10});
-                                receptorNodeIds.add(item.receptor);
-                            }
-                            
-                            // Add receptor_cell node (always, since they should form a 360-degree pattern around their receptor)
-                            nodes.push({ id: `${item.receptor}-${item.receptor_cell}`, label: item.receptor_cell, title: item.receptor_cell, color: 'turquoise', size:15});
-
-                            // Add edges if they don't exist
-                            if (!edgeSet.has(edge1Str)) {
-                                edges.push({ from: item.ligand, to: item.receptor, length:250 });
-                                edgeSet.add(edge1Str);
-                            }
-
-                            if (!edgeSet.has(edge2Str)) {
-                                edges.push({ from: item.receptor, to: `${item.receptor}-${item.receptor_cell}`, length: 50 });
-                                edgeSet.add(edge2Str);
-                            }
+                            groupedByCell[item.ligand_cell].push(item);
                         });
 
-                        Object.entries(graphs).forEach(([key, graph]) => {
-                            console.log(`Graph for key ${key}:`);
-                            console.log('Nodes:', graph.nodes);
-                            console.log('Edges:', graph.edges);
+                        const graphs = {};
+
+                        Object.entries(groupedByCell).forEach(([cell, cellItems]) => {
+                            const currentGraph = {
+                                ligand_cell: cell,
+                                nodes: [{
+                                    id: searchTerm, label: searchTerm, title: searchTerm, color: 'green', size: 100, font: {
+                                        face: 'Arial',
+                                        size: 50
+                                    }
+                                }],
+                                edges: [],
+                                receptorNodeIds: new Set(),
+                                edgeSet: new Set()
+                            };
+
+                            cellItems.forEach(item => {
+                                const { nodes, edges, receptorNodeIds, edgeSet } = currentGraph;
+
+                                const edge1Str = `${item.ligand}->${item.receptor}`;
+                                const edge2Str = `${item.receptor}->${item.receptor}-${item.receptor_cell}`;
+                                const cellNodeId = `${item.receptor}-${item.receptor_cell}`;
+
+                                if (!receptorNodeIds.has(item.receptor)) {
+                                    nodes.push({ id: item.receptor, label: item.receptor, title: item.receptor, color: 'orange', value: 10 });
+                                    receptorNodeIds.add(item.receptor);
+                                }
+
+                                if (!receptorNodeIds.has(cellNodeId)) {
+                                    nodes.push({ id: cellNodeId, label: item.receptor_cell, title: item.receptor_cell, color: 'turquoise', size: 15 });
+                                    receptorNodeIds.add(cellNodeId);
+                                }
+
+                                if (!edgeSet.has(edge1Str)) {
+                                    edges.push({ from: item.ligand, to: item.receptor, length: 250 });
+                                    edgeSet.add(edge1Str);
+                                }
+
+                                if (!edgeSet.has(edge2Str)) {
+                                    edges.push({ from: item.receptor, to: cellNodeId, length: 50 });
+                                    edgeSet.add(edge2Str);
+                                }
+                            });
+
+                            graphs[cell] = currentGraph;
                         });
 
                         const graphArray = Object.values(graphs);
+                        console.log("Generated graph data:", graphArray);  // Debugging line
                         setGraphData(graphArray);
                     } else {
                         console.error("API response is not an array:", data);
@@ -139,7 +148,7 @@ function SearchResult() {
                 align: 'center'  // Center the text inside the node
             },
             chosen: { // Only include this if nothing else works
-                node: function(values, id, selected, hovering) {
+                node: function (values, id, selected, hovering) {
                     values.color = 'grey';  // or whatever logic you have for color
                     values.label = 'center'; // Force center alignment
                 }
@@ -182,9 +191,10 @@ function SearchResult() {
                 {graphData.length > 0 ? (
                     graphData.map((graph, index) => (
                         <div key={index}>
-                            <h3>Graph: {index + 1}</h3>
+                            <h3>Graph for Ligand Cell: {graph.ligand_cell}</h3>
                             <div className="graph-container">
                                 <Graph graph={graph} options={options} />
+                                <div className="graph-overlay"></div>
                             </div>
                         </div>
                     ))
