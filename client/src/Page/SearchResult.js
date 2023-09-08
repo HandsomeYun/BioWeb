@@ -5,7 +5,6 @@ import Graph from 'react-graph-vis';
 
 import '../style/HomePage.css'
 
-
 function SearchResult() {
     const [graphData, setGraphData] = useState([]);
 
@@ -158,6 +157,16 @@ function SearchResult() {
 
     return (
         <>
+        {/* Navigation Bar Starts */}
+        <div id="header">
+                    <nav>
+                        <h1>BioWebTitle</h1>
+                        <li><a href='/'>Home</a></li>
+                        <li ><a href="#extra">Bolgs</a></li>
+                        <li ><a href="/Circos">Circos</a></li>
+                        <li ><a href="#extra">Contact US</a></li>
+                    </nav>
+                </div>
             {/* Here starts the Search Bar*/}
             <div className="box">
                 <form action="#" onSubmit={handleSearchSubmit}>

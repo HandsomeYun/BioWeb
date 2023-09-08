@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import '../style/HomePage.css'
 
 function HomePage() {
@@ -31,11 +31,10 @@ function HomePage() {
                 <div id="header">
                     <nav>
                         <h1>BioWebTitle</h1>
-                        <li><a href='#header'>Home</a></li>
-                        <li ><a href="#extra">Bolgs</a></li>
-                        <li ><a href=
-                            "https://www.geeksforgeeks.org/about/contact-us/?ref=write-footer">
-                            Contact US</a></li>
+                        <li><Link to='/'>Home</Link></li>
+                        <li><Link to='#extra'>Blogs</Link></li>
+                        <li><Link to='/Circos'>Circos</Link></li>
+                        <li><Link to='#extra'>Contact US</Link></li>
                     </nav>
                 </div>
                 <div id="wrapper">
@@ -106,7 +105,7 @@ function HomePage() {
                         <button>Read More</button>
                     </div>
                 </div>
-                <div id="footer"><p>Copyright@2007</p>
+                <div id="footer"><p>Copyright@2023</p>
                 </div>
             </div>
         </>
