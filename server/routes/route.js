@@ -24,24 +24,52 @@ router.get("/", async(req, res) =>{
     }
 }); 
 
-router.get("/FindByLigand", async(req, res) =>{
-    try{
-        const ligandName = req.query.name;
+// Existing route: find by species
+router.get("/FindBySpecies", async (req, res) => {
+    try {
+        const speciesType = req.query.species;
 
-        if(!ligandName){
-            return res.status(400).json({ error: "No name query found inside request" });
+        if (!speciesType) {
+            return res.status(400).json({ error: "No species query found inside request" });
         }
 
-        const ligandsFound = await ligands.find({ ligand: ligandName }).exec();
+        const ligandsFound = await ligands.find({ "species.x": speciesType }).exec();
         if (ligandsFound.length === 0) {
-            return res.status(404).json({ message: "No ligands found with the specified name" });
+            return res.status(404).json({ message: "No ligands found for the specified species" });
         }
 
         res.json(ligandsFound);
-    } catch (error){
+    } catch (error) {
         console.error(error);
         res.status(500).json({ error: "An error occurred" });
     }
-}); 
+});
+
+// New route: find by species and ligand name
+router.get("/findBySpecies/findByLigand", async (req, res) => {
+    try {
+        const speciesType = req.query.species;
+        const ligandName = req.query.name;
+
+        if (!speciesType || !ligandName) {
+            return res.status(400).json({ error: "Both species and ligand name queries must be provided" });
+        }
+
+        const ligandsFound = await ligands.find({ 
+            "species.x": speciesType,
+            "ligand": ligandName
+        }).exec();
+
+        if (ligandsFound.length === 0) {
+            return res.status(404).json({ message: "No ligands found for the specified species and name" });
+        }
+
+        res.json(ligandsFound);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "An error occurred" });
+    }
+});
+ 
 
 module.exports = router;
