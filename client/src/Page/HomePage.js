@@ -4,7 +4,7 @@ import '../style/HomePage.css'
 
 function HomePage() {
     const [isFilterOpen, setIsFilterOpen] = useState(false);
-    const [selectedSpecies, setSelectedSpecies] = useState('');
+    const [selectedSpecies, setSelectedSpecies] = useState('human');
 
     const handleSelectionClick = () => {
         setIsFilterOpen(!isFilterOpen);
@@ -21,7 +21,7 @@ function HomePage() {
     const handleSearchSubmit = (e) => {
         e.preventDefault();
         if (searchTerm) {
-            navigate(`/FindByLigand?name=${searchTerm}`);
+            navigate(`/findBySpecies/findByLigand?species=${selectedSpecies}&name=${searchTerm}`);
         }
     };
 
@@ -60,8 +60,8 @@ function HomePage() {
                                         </div>
                                         {isFilterOpen && (
                                             <div className="categories active">
-                                                <p className="option" onClick={() => handleOptionClick('Human')}>Human</p>
-                                                <p className="option" onClick={() => handleOptionClick('Rat')}>Rat</p>
+                                                <p className="option" onClick={() => handleOptionClick('human')}>Human</p>
+                                                <p className="option" onClick={() => handleOptionClick('rat')}>Rat</p>
                                             </div>
                                         )}
                                     </div>

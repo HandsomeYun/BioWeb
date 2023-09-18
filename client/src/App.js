@@ -9,7 +9,7 @@ function App() {
     <Router>
       <Routes>
         <RouteV6 path="/" element={<HomePage />} />
-        <RouteV6 path="/FindByLigand" element={<SearchResult />} />
+        <RouteV6 path="/findBySpecies/findByLigand" element={<SearchResult />} />
         <RouteV6 path="/Circos" element={<Circos />} />
       </Routes>
     </Router>
