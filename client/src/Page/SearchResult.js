@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
 import Graph from 'react-graph-vis';
 
@@ -157,16 +157,16 @@ function SearchResult() {
 
     return (
         <>
-        {/* Navigation Bar Starts */}
-        <div id="header">
-                    <nav>
-                        <h1>BioWebTitle</h1>
-                        <li><a href='/'>Home</a></li>
-                        <li ><a href="#extra">Bolgs</a></li>
-                        <li ><a href="/Circos">Circos</a></li>
-                        <li ><a href="#extra">Contact US</a></li>
-                    </nav>
-                </div>
+            {/* Navigation Bar Starts */}
+            <div id="header">
+                <nav>
+                    <h1>BioWebTitle</h1>
+                    <li><Link to='/'>Home</Link></li>
+                    <li><Link to='#extra'>Blogs</Link></li>
+                    <li><Link to='/Circos'>Circos</Link></li>
+                    <li><Link to='#extra'>Contact US</Link></li>
+                </nav>
+            </div>
             {/* Here starts the Search Bar*/}
             <div className="box">
                 <form action="#" onSubmit={handleSearchSubmit}>
