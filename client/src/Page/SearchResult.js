@@ -34,6 +34,11 @@
             }
         };
 
+        //mandatorily convert the first letter to upper case
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+        };
+
         useEffect(() => {
             if (searchTerm) {
                 fetch(`http://localhost:8000/findBySpecies/findByLigand?species=${selectedSpecies}&name=${searchTerm}`)
@@ -196,7 +201,7 @@
                                 placeholder="Type to Search Ligands..."
                                 required
                                 value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
+                                onChange={(e) => setSearchTerm(capitalizeFirstLetter(e.target.value))}
                             />
                             <div className="selection" onClick={handleSelectionClick}>
                                 <p>{selectedSpecies ? selectedSpecies : "Species"}</p>

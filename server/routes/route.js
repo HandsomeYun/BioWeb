@@ -70,6 +70,55 @@ router.get("/findBySpecies/findByLigand", async (req, res) => {
         res.status(500).json({ error: "An error occurred" });
     }
 });
+
+router.get("/Circos", async (req, res) => {
+    try {
+        // Fetch all data from the ligands collection
+        const ligandData = await ligands.find().exec();
+
+        const ligandNames = [...new Set(ligandData.map(doc => doc.ligand))];
+        const receptorNames = [...new Set(ligandData.map(doc => doc.receptor))];
+
+        const allEntities = [...ligandNames, ...receptorNames];
+
+        const totalSegments = allEntities.length;
+        const segmentAngle = 360 / totalSegments; 
+
+        const layoutData = allEntities.map((item, idx) => {
+            const startAngle = idx * segmentAngle;
+            const endAngle = (idx + 1) * segmentAngle;
+            return {
+                id: item,
+                label: item,
+                color: ligandNames.includes(item) ? 'red' : 'blue',
+                start: startAngle,
+                end: endAngle
+            };
+        });
+
+        const links = ligandData.map(doc => {
+            return {
+                source: doc.ligand,
+                target: doc.receptor,
+                thickness: 1,
+                color: "#f00"
+            }
+        });
+
+        console.log(layoutData);
+
+        res.json(layoutData);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "An error occurred fetching ligand-receptor data" });
+    }
+});
  
+
+//route for circos graph
+router.get('/getImage', (req, res) => {
+    const imgPath = 'C:/Users/Yuqi/Documents/circos/circos_plot.png';
+    res.sendFile(path.resolve(imgPath));
+});
 
 module.exports = router;
