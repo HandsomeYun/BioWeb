@@ -41,7 +41,8 @@
 
         useEffect(() => {
             if (searchTerm) {
-                fetch(`http://localhost:8000/findBySpecies/findByLigand?species=${selectedSpecies}&name=${searchTerm}`)
+                const capitalizedSearchTerm = capitalizeFirstLetter(searchTerm);
+                fetch(`http://localhost:8000/findBySpecies/findByLigand?species=${selectedSpecies}&name=${capitalizedSearchTerm}`)
                     .then(response => response.json())
                     .then(data => {
                         if (Array.isArray(data)) {
@@ -61,9 +62,9 @@
                                 const currentGraph = {
                                     ligand_cell: cell,
                                     nodes: [{
-                                        id: searchTerm, 
-                                        label: searchTerm, 
-                                        title: searchTerm, 
+                                        id: capitalizedSearchTerm, 
+                                        label: capitalizedSearchTerm, 
+                                        title: capitalizedSearchTerm, 
                                         color: 'green', 
                                         size: 100, 
                                         font: {
@@ -83,7 +84,7 @@
                                     const edge2Str = `${item.receptor}->${item.receptor}-${item.receptor_cell}`;
                                     const cellNodeId = `${item.receptor}-${item.receptor_cell}`;
                                     
-                                    if (item.ligand === searchTerm) {
+                                    if (item.ligand === capitalizedSearchTerm) {
                                         nodes[0].title = `LogFC_Str_vs_Con.x: ${item.LogFC_Str_vs_Con.x} \nFDR_Str_vs_Con.x: ${item.FDR_Str_vs_Con.x}`;
                                     }
 
@@ -201,7 +202,7 @@
                                 placeholder="Type to Search Ligands..."
                                 required
                                 value={searchTerm}
-                                onChange={(e) => setSearchTerm(capitalizeFirstLetter(e.target.value))}
+                                onChange={(e) => setSearchTerm(e.target.value)}
                             />
                             <div className="selection" onClick={handleSelectionClick}>
                                 <p>{selectedSpecies ? selectedSpecies : "Species"}</p>
