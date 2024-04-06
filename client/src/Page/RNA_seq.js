@@ -13,6 +13,11 @@ function RNA_seq_Page(){
                     <li><Link to='#extra'>Contact US</Link ></li>
                 </nav>
             </div>
+            <iframe
+                src="https://whitematterwiki.org/"
+                style={{width: '100%', height: '600px', border: 'none'}}
+                title="WhiteMatterWiki Embedded Page">
+            </iframe>
         </>
     )
 }
