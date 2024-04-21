@@ -14,7 +14,8 @@ function RNA_seq_Page(){
                 </nav>
             </div>
             <iframe
-                src="https://whitematterwiki.org/"
+                //src="https://whitematterdatapage.com/"
+                src="https://whitematterdatapage.com//"
                 style={{width: '100%', height: '600px', border: 'none'}}
                 title="WhiteMatterWiki Embedded Page">
             </iframe>
