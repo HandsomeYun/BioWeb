@@ -4,7 +4,7 @@ dotenv.config({path:'./config.env'});
 
 const express = require("express")
 const app = express()
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8000;
 const cors = require("cors")
 const Router = require('./routes/route.js');
 
@@ -15,22 +15,18 @@ app.use(cors())
 
 //routes
 app.use('/', Router);
-//app.use('/FindByLigand', Router);
-
-//create  an example rout
-// app.get("/", cors(), async(req, res) => {
-//     res.send("this is working")
-// })
 
 console.log(process.env);
 
 mongoose.connect(process.env.CONN_STR, {
-    useNewUrlParser:true
+    dbName: 'ligandData',
+    useNewUrlParser:true,
+    useUnifiedTopology: true
 }).then((conn) => {
-    //console.log(conn);
+    console.log(conn);
     console.log('DB Connection Successful')
-}).catch((error) => {
-    console.log('Error Occured')
+}).catch((err) => {
+    console.log(err);
 })
 
 app.listen(port, ()=>{

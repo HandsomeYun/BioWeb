@@ -4,25 +4,28 @@ const router = express.Router();
 const path = require('path')
 
 
-router.get("/", async(req, res) =>{
-    try{
-        const ligandName = "Spp1";
+router.get("/", async(req, res) => {
+    try {
+        const ligandName = "C3".trim();  // Assuming you always want to trim spaces
 
         if(!ligandName){
             return res.status(400).json({ error: "No name query found inside request" });
         }
 
-        const ligandsFound = await ligands.find({ ligand: ligandName }).exec();
-        if (ligandsFound.length === 0) {
+        const ligandsFound = await ligands.find({}).exec();
+        console.log("Found ligands:", ligandsFound);
+
+        if  (ligandsFound.length === 0) {
             return res.status(404).json({ message: "No ligands found with the specified name" });
         }
 
         res.json(ligandsFound);
-    } catch (error){
-        console.error(error);
+    } catch (error) {
+        console.error("Query error:", error);
         res.status(500).json({ error: "An error occurred" });
     }
-}); 
+});
+
 
 // Existing route: find by species
 router.get("/FindBySpecies", async (req, res) => {
