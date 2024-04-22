@@ -42,7 +42,10 @@
         useEffect(() => {
             if (searchTerm) {
                 const capitalizedSearchTerm = capitalizeFirstLetter(searchTerm);
-                fetch(`http://localhost:8000/findBySpecies/findByLigand?species=${selectedSpecies}&name=${capitalizedSearchTerm}`)
+                const baseURL = process.env.NODE_ENV === "production" 
+                    ? `/findBySpecies/findByLigand?species=${selectedSpecies}&name=${capitalizedSearchTerm}`
+                    : `http://localhost:8000/findBySpecies/findByLigand?species=${selectedSpecies}&name=${capitalizedSearchTerm}`
+                fetch(baseURL)
                     .then(response => response.json())
                     .then(data => {
                         if (Array.isArray(data)) {
