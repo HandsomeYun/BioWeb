@@ -2,3 +2,69 @@
     width: 500px;
     height: 500px;
  }
+
+#dropdown-container button {
+    background-color: #4CAF50; /* Green background */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+#dropdown-container button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+#dropdown-container button.active {
+    background-color: #003300; /* Dark green when selected */
+}
+
+
+#image-container {
+    max-width: 600px; /* Set maximum width of the image container */
+    margin: 20px auto; /* Center the container horizontally and add space */
+    border: 1px solid #ccc; /* Add a border around the image container */
+    padding: 10px;
+}
+
+#image-container img {
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.25s ease; /* Smooth transformation */
+    cursor: zoom-in; /* Indicates that the image can be zoomed */
+}
+
+#image-container img.zoomed {
+    transform: scale(2); /* Example zoom level */
+    cursor: zoom-out;
+}
+
+.instruction-text {
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    color: #666;
+}
+
+#header nav {
+    background: #f0f0f0;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+#header nav li {
+    display: inline;
+    margin-right: 20px;
+}
+
+#header nav li a {
+    text-decoration: none;
+    color: #333;
+}
