@@ -53,18 +53,33 @@
     color: #666;
 }
 
+#header {
+	position: relative;
+	border-radius: 0px;
+}
+#header h1 {
+	height: 80px;
+	line-height: 80px;
+	margin: 0;
+	padding-left: 10px;
+	background: #0A6847;
+	color: white;
+	margin-left: 5%;
+	font-size:x-large;
+}
 #header nav {
-    background: #f0f0f0;
-    padding: 10px 20px;
-    border-radius: 5px;
+	position: relative;
+	display: flex;
+	list-style: none;
+	margin: 0;
+	padding-left: 10px;
+	background: #0A6847;
+	color: white;
 }
-
-#header nav li {
-    display: inline;
-    margin-right: 20px;
-}
-
-#header nav li a {
-    text-decoration: none;
-    color: #333;
+#header li a {
+	margin: 0;
+	background: #0A6847;
+	color: white;
+	font-size: large;
+	font-weight: bold;
 }

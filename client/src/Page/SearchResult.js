@@ -1,11 +1,10 @@
     import React, { useState, useEffect } from 'react';
-    import { useNavigate } from 'react-router-dom';
+    import { useNavigate, Link } from 'react-router-dom';
     import { useSearchParams } from 'react-router-dom';
     import Graph from 'react-graph-vis';
     import 'vis-network/styles/vis-network.css';
+    import '../style/SearchPage.css';
     
-    import '../style/HomePage.css'
-
     function SearchResult() {
         const [graphData, setGraphData] = useState([]);
 
@@ -38,13 +37,17 @@
         function capitalizeFirstLetter(string) {
             return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
         };
-
+        var selected_Species = "";
+        //process the species name here
+        if(selectedSpecies=="Human"){
+            selected_Species = "human";
+        } else {
+            selected_Species = "rat";
+        }
         useEffect(() => {
             if (searchTerm) {
                 const capitalizedSearchTerm = capitalizeFirstLetter(searchTerm);
-                const baseURL = process.env.NODE_ENV === "production" 
-                    ? `/findBySpecies/findByLigand?species=${selectedSpecies}&name=${capitalizedSearchTerm}`
-                    : `http://localhost:8000/findBySpecies/findByLigand?species=${selectedSpecies}&name=${capitalizedSearchTerm}`
+                const baseURL = `/api/findBySpecies/findByLigand?species=${selected_Species}&name=${capitalizedSearchTerm}`
                 fetch(baseURL)
                     .then(response => response.json())
                     .then(data => {
@@ -185,16 +188,17 @@
 
         return (
             <>
-            {/* Navigation Bar Starts */}
-            <div id="header">
-                        <nav>
-                            <h1>WhiteMatterWiki</h1>
-                            <li><a href='/'>Home</a></li>
-                            <li ><a href="/RNAseq">RNA-Seq</a></li>
-                            <li ><a href="/Circos">Circos</a></li>
-                            <li ><a href="#extra">Contact US</a></li>
-                        </nav>
-                    </div>
+            <div id="container">
+                {/* Navigation Bar Starts */}
+                <div id="header">
+                    <nav>
+                        <h1>WhiteMatterWiki</h1>
+                        <li><Link to='/'>Home</Link></li>
+                        <li ><Link to="/RNAseq">RNA-Seq</Link></li>
+                        <li ><Link to="/Circos">Circos</Link></li>
+                        <li ><Link to="#extra">Contact US</Link></li>
+                    </nav>
+                </div>
                 {/* Here starts the Search Bar*/}
                 <div className="box">
                     <form action="#" onSubmit={handleSearchSubmit}>
@@ -213,8 +217,8 @@
                             </div>
                             {isFilterOpen && (
                                 <div className="categories active">
-                                    <p className="option" onClick={() => handleOptionClick('human')}>human</p>
-                                    <p className="option" onClick={() => handleOptionClick('rat')}>rat</p>
+                                    <p className="option" onClick={() => handleOptionClick('Human')}>Human</p>
+                                    <p className="option" onClick={() => handleOptionClick('Mouse')}>Mouse</p>
                                 </div>
                             )}
                         </div>
@@ -238,6 +242,7 @@
                         <p>No ligands found with the specified name and species.</p>
                     )}
                 </div>
+            </div>
             </>
         );
     }

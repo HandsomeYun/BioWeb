@@ -14,7 +14,7 @@ app.use(express.json())
 app.use(cors())
 
 //routes
-app.use('/', Router);
+app.use('/api', Router);
 
 console.log(process.env);
 
