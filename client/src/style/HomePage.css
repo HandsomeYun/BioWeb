@@ -48,11 +48,6 @@ div#header li a {
 	font-size: large;
 	font-weight: bold;
 }
-/* div#navigation img {
-	width: 30rem;
-	height: 22rem;
-	margin: 6px;
-} */
 div#extra {
 	display: flex;
 	padding: 0px;
@@ -93,6 +88,9 @@ div#content h1 {
 	font-size: 30px;
 	font-weight: 700;
 	color: rgb(11, 49, 11);
+}
+div#content #reference-text{
+	font-size: 18px;
 }
 div#content button {
 	height: 50px;
@@ -175,7 +173,7 @@ div#extra {
     position: absolute;
     top: 100%;
     right: 0px;
-    background-color: #0A6847;
+    background-color: #F3CA52;
     color: #fff;
     padding: 5px;
     font-size: 25px; /* Add 'px' to specify the font size */

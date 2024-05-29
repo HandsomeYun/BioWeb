@@ -71,7 +71,7 @@
                                         id: capitalizedSearchTerm, 
                                         label: capitalizedSearchTerm, 
                                         title: capitalizedSearchTerm, 
-                                        color: 'green', 
+                                        color: '#25d970', 
                                         size: 100, 
                                         font: {
                                             face: 'Arial',
@@ -103,7 +103,30 @@
                                     }
 
                                     if (!receptorNodeIds.has(cellNodeId)) {
-                                        nodes.push({ id: cellNodeId, label: item.receptor_cell, title: `LogFC_Str_vs_Con.y: ${item.LogFC_Str_vs_Con.y} \nFDR_Str_vs_Con.y: ${item.FDR_Str_vs_Con.y}`, color: 'turquoise', size: 15 });
+                                        let color;
+                                        switch(item.receptor_cell) {
+                                            case 'Peri':
+                                                color = '#77B300';
+                                                break;
+                                            case 'OPC':
+                                                color = '#A9A9A9';
+                                                break;
+                                            case 'astrocyte':
+                                                color = '#FFD700';
+                                                break;
+                                            case 'Micro':
+                                                color = '#99BBFF';
+                                                break;
+                                            case 'EC':
+                                                color = '#EE82EE';
+                                                break;
+                                            default:
+                                                color = 'turquoise';
+                                        }
+                                        nodes.push({ id: cellNodeId, label: item.receptor_cell, 
+                                            title: `LogFC_Str_vs_Con.y: ${item.LogFC_Str_vs_Con.y} \nFDR_Str_vs_Con.y: ${item.FDR_Str_vs_Con.y}`,
+                                            color: color, 
+                                            size: 15 });
                                         receptorNodeIds.add(cellNodeId);
                                     }
 

@@ -242,7 +242,7 @@ function HomePage() {
                         {/* Search Bar Ends*/}
 
                         <h2>Reference</h2>
-                        <p>
+                        <p id="reference-text">
                             BioRxiv, DOI: https://doi.org/10.1101/2024.03.24.585301
                         </p>
                         <a href="https://doi.org/10.1101/2024.03.24.585301" class="button" target="_blank" rel="noopener noreferrer">
@@ -294,7 +294,7 @@ function HomePage() {
                         )}
                     </div>
                 </div>
-                <div id="footer"><p>Copyright@2023</p>
+                <div id="footer"><p>Copyright@2023 Yuqi Huang Yun Zhang</p>
                 </div>
             </div>
         </>
