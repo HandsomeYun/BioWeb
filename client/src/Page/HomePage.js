@@ -73,7 +73,11 @@ function HomePage() {
                             const cellNodeId = `${item.receptor}-${item.receptor_cell}`;
     
                             if (item.ligand === capitalizedSearchTerm) {
-                                nodes[0].title = `LogFC_Str_vs_Con.x: ${item.LogFC_Str_vs_Con.x} \nFDR_Str_vs_Con.x: ${item.FDR_Str_vs_Con.x}`;
+                                if(item.FDR_Str_vs_Con.x != undefined){
+                                    nodes[0].title = `LogFC_Str_vs_Con.x: ${item.LogFC_Str_vs_Con.x} \nFDR_Str_vs_Con.x: ${item.FDR_Str_vs_Con.x}`;
+                                } else {
+                                    nodes[0].title = `LogFC_Str_vs_Con.x: ${item.LogFC_Str_vs_Con.x}`;
+                                }
                             }
     
                             if (!receptorNodeIds.has(item.receptor)) {
@@ -105,9 +109,15 @@ function HomePage() {
                                     default:
                                         color = 'turquoise';
                                 }
+                                let title = '';
+                                if(item.FDR_Str_vs_Con.y != undefined){
+                                    title = `LogFC_Str_vs_Con.y: ${item.LogFC_Str_vs_Con.y} \nFDR_Str_vs_Con.y: ${item.FDR_Str_vs_Con.y}`;
+                                } else {
+                                    title = `LogFC_Str_vs_Con.y: ${item.LogFC_Str_vs_Con.y}`;
+                                }
                                 nodes.push({ id: cellNodeId, 
                                     label: item.receptor_cell, 
-                                    title: `LogFC_Str_vs_Con.y: ${item.LogFC_Str_vs_Con.y} \nFDR_Str_vs_Con.y: ${item.FDR_Str_vs_Con.y}`, 
+                                    title: title, 
                                     color: color, 
                                     size: 20 });
                                 receptorNodeIds.add(cellNodeId);
@@ -136,6 +146,7 @@ function HomePage() {
             })
             .catch(error => {
                 console.error("Error fetching search results:", error);
+                console.log("graph.data: ", graphDataC3);
             });
     }
     
@@ -144,7 +155,7 @@ function HomePage() {
     useEffect(() => {
         fetchGraphData("Spp1", "human", setGraphDataSpp1);
         fetchGraphData("Entpd1", "human", setGraphDataEntpd1);
-        fetchGraphData("C3", "human", setGraphDataC3);
+        fetchGraphData("Fn1", "human", setGraphDataC3);
     }, []);
 
     const options = {            
