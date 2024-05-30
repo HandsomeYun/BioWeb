@@ -29,7 +29,8 @@
         const handleSearchSubmit = (e) => {
             e.preventDefault();
             if (searchTerm) {
-                window.location.href = `/findBySpecies/findByLigand?species=${selectedSpecies}&name=${searchTerm}`;
+                let capitalizedTerm = searchTerm.charAt(0).toUpperCase() + searchTerm.slice(1).toLowerCase();
+                navigate(`/findBySpecies/findByLigand?species=${selectedSpecies}&name=${capitalizedTerm}`);
             }
         };
 
