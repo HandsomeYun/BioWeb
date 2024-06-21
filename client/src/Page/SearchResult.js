@@ -43,7 +43,7 @@
         if(selectedSpecies=="Human"){
             selected_Species = "human";
         } else {
-            selected_Species = "rat";
+            selected_Species = "mouse";
         }
         useEffect(() => {
             if (searchTerm) {
