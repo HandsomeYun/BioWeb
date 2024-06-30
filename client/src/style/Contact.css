@@ -1,0 +1,119 @@
+div#header {
+	position: relative;
+	border-radius: 0px;
+}
+div#header h1 {
+	height: 80px;
+	line-height: 80px;
+	margin: 0;
+	padding-left: 10px;
+	background: #0A6847;
+	color: white;
+	margin-left: 5%;
+	font-size:x-large;
+}
+div#header nav {
+	position: relative;
+	display: flex;
+	list-style: none;
+	margin: 0;
+	padding-left: 10px;
+	background: #0A6847;
+	color: white;
+}
+div#header li {
+	align-items: center;
+	justify-content: center;
+	margin-top: 30px;
+	padding-left: 10px;
+	color: white;
+}
+div#header li a {
+	margin: 0;
+	background: #0A6847;
+	color: white;
+	font-size: large;
+	font-weight: bold;
+}
+div#intro {
+    font-size: 50px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px;
+    font-weight: 600;
+}
+div#subcontent {
+    font-size: 17px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding-top: 40px;
+    color:rgb(130, 130, 130)y;
+}
+.info {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.columns {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 250px;
+    padding-top: 50px;
+    padding-bottom: 80px;
+}
+.column {
+    width: 45%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color:#4d5452;
+}
+.column a:hover {
+    text-decoration: underline;
+}
+div#footer-wrapper-c{
+	background: #545854;
+}
+#footer1-c {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 5px;
+	padding-left: 50px;
+	padding-right: 50px;
+    border-top: 2px solid rgb(64,64,64);
+    font-family: "Old Standard TT";
+}
+
+#footer1-c .left {
+    text-align: left;
+    flex: 1;
+	padding-left: 1px;
+	color: #fff;
+	font-size: 15px;
+}
+
+#footer1-c .right {
+	color: #fff;
+    text-align: right;
+    flex: 1;
+	padding-right: 10px;
+	font-size: 15px;
+}
+
+div#footer2-c {
+	color: #fff;
+	text-align: left;
+	font-family: "Old Standard TT";
+	padding-bottom: 10px;
+	padding-left: 50px;
+	font-size: 15px;
+}

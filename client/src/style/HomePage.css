@@ -68,13 +68,44 @@ div#extra #card #graph1{
     position: relative;
     z-index: 10;
 }
-div#footer {
-	background: #42444e;
-	color: #fff;
+div#footer-wrapper{
+	background: #545854;
 }
-div#footer p {
-	padding: 20px 10px;
-	text-align: center;
+#footer1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 5px;
+	padding-left: 50px;
+	padding-right: 50px;
+    border-top: 2px solid rgb(64,64,64);
+    font-family: "Old Standard TT";
+}
+
+#footer1 .left {
+    text-align: left;
+    flex: 1;
+	padding-left: 1px;
+	color: #fff;
+	font-size: 15px;
+}
+
+#footer1 .right {
+	color: #fff;
+    text-align: right;
+    flex: 1;
+	padding-right: 10px;
+	font-size: 15px;
+}
+
+div#footer2 {
+	color: #fff;
+	text-align: left;
+	font-family: "Old Standard TT";
+	padding-bottom: 10px;
+	padding-left: 50px;
+	font-size: 15px;
 }
 div#wrapper {
 	float: left;

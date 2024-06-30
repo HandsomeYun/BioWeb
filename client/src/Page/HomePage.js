@@ -215,7 +215,7 @@ function HomePage() {
                         <li><Link to='/'className='home-link'>Home</Link></li>
                         <li><Link to='/RNAseq'className='RNAseq-link'>RNA-Seq</Link></li>
                         <li><Link to='/Circos'className='Circos-link'>Circos</Link></li>
-                        <li><Link to='#extra'className='contact-link'>Contact US</Link></li>
+                        <li><Link to='/Contact'className='contact-link'>Contact US</Link></li>
                     </nav>
                 </div>
                 <div id="wrapper">
@@ -305,7 +305,19 @@ function HomePage() {
                         )}
                     </div>
                 </div>
-                <div id="footer"><p>Copyright@2023 Yuqi Huang Yun Zhang</p>
+                <div id="footer-wrapper">
+                    <div id="footer1">
+                        <div class="left">
+                            ref: Min Tian / Carmichael lab @ UCLA
+                        </div>
+                        <div class="right">
+                            for questions concerning vascular dementia study, contact: tianmin1111@gmail.com
+                        </div>
+                    </div>
+                    <hr id="custom-hr"></hr>
+                    <div id="footer2">
+                        Site By Yuqi Huang Yun Zhang
+                    </div>
                 </div>
             </div>
         </>

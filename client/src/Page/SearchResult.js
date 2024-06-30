@@ -12,7 +12,7 @@
         const [searchParams] = useSearchParams();
         const initialSearchTerm = searchParams.get('name');  //pass the name of the ligand
         const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
-        const initialSpeciesType = searchParams.get('species');
+        const initialSpeciesType = new URLSearchParams(window.location.search).get('species') || 'Human';
         const [selectedSpecies, setSelectedSpecies] = useState(initialSpeciesType);
 
         const handleSelectionClick = () => {
@@ -22,6 +22,10 @@
         const handleOptionClick = (option) => {
             setSelectedSpecies(option);
             setIsFilterOpen(false);
+            const searchParams = new URLSearchParams(window.location.search);
+            searchParams.set('species', option);
+            navigate(`${window.location.pathname}?${searchParams.toString()}`);
+            window.location.reload();
         };
 
         const navigate = useNavigate();
@@ -220,7 +224,7 @@
                         <li><Link to='/'>Home</Link></li>
                         <li ><Link to="/RNAseq">RNA-Seq</Link></li>
                         <li ><Link to="/Circos">Circos</Link></li>
-                        <li ><Link to="#extra">Contact US</Link></li>
+                        <li ><Link to="/Contact">Contact US</Link></li>
                     </nav>
                 </div>
                 {/* Here starts the Search Bar*/}

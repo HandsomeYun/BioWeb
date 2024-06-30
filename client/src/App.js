@@ -4,6 +4,7 @@ import HomePage from './Page/HomePage';
 import SearchResult from './Page/SearchResult';
 import Circos from './Page/Circos';
 import RNA_seq_Page from './Page/RNA_seq';
+import Contact from './Page/Contact';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <RouteV6 path="/findBySpecies/findByLigand" element={<SearchResult />} />
         <RouteV6 path="/Circos" element={<Circos />} />
         <RouteV6 path="/RNAseq" element={<RNA_seq_Page />} />
+        <RouteV6 path="/Contact" element={<Contact />} />
       </Routes>
     </Router>
   );

@@ -183,7 +183,7 @@ function CircosPage() {
                     <li><Link to='/'>Home</Link></li>
                     <li><Link to='/RNAseq'>RNA-Seq</Link></li>
                     <li><Link to='/Circos'>Circos</Link></li>
-                    <li><Link to='#extra'>Contact US</Link ></li>
+                    <li><Link to='/Contact'>Contact US</Link ></li>
                 </nav>
             </div>
             <div id="dropdown-container">
