@@ -4,6 +4,7 @@
     import Graph from 'react-graph-vis';
     import 'vis-network/styles/vis-network.css';
     import '../style/SearchPage.css';
+    import GlobalHeader from '../components/globalHeader'
     
     function SearchResult() {
         const [graphData, setGraphData] = useState([]);
@@ -39,8 +40,13 @@
         };
 
         //mandatorily convert the first letter to upper case
-        function capitalizeFirstLetter(string) {
-            return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+        function capitalizeLetter(string, isHuman) {
+            if(isHuman){
+                //if isHuman, turn all letters to uppercase
+                return string.toUpperCase()
+            } else {
+                return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+            }
         };
         var selected_Species = "";
         //process the species name here
@@ -51,7 +57,13 @@
         }
         useEffect(() => {
             if (searchTerm) {
-                const capitalizedSearchTerm = capitalizeFirstLetter(searchTerm);
+                let capitalizedSearchTerm = '';
+                if(selectedSpecies=="Human"){
+                    capitalizedSearchTerm = capitalizeLetter(searchTerm, true);
+                } else {
+                    capitalizedSearchTerm = capitalizeLetter(searchTerm, false);
+                }
+                //const capitalizedSearchTerm = capitalizeLetter(searchTerm);
                 const baseURL = `/api/findBySpecies/findByLigand?species=${selected_Species}&name=${capitalizedSearchTerm}`
                 fetch(baseURL)
                     .then(response => response.json())
@@ -219,13 +231,7 @@
             <div id="container">
                 {/* Navigation Bar Starts */}
                 <div id="header">
-                    <nav>
-                        <h1>WhiteMatterWiki</h1>
-                        <li><Link to='/'>Home</Link></li>
-                        <li ><Link to="/RNAseq">RNA-Seq</Link></li>
-                        <li ><Link to="/Circos">Circos</Link></li>
-                        <li ><Link to="/Contact">Contact US</Link></li>
-                    </nav>
+                    <GlobalHeader page={{ text: 'RNAseq' }}/>
                 </div>
                 {/* Here starts the Search Bar*/}
                 <div className="box">

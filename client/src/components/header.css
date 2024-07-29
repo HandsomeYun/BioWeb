@@ -1,0 +1,44 @@
+div#header {
+	position: relative;
+	border-radius: 0px;
+}
+div#header h1 {
+	height: 65px;
+	line-height: 65px;
+	margin: 0;
+	padding-left: 10px;
+	background: #0A6847;
+	color: white;
+	margin-left: 5%;
+	font-size:x-large;
+}
+div#header nav {
+	position: relative;
+	display: flex;
+	list-style: none;
+	margin: 0;
+	padding-left: 10px;
+	background: #0A6847;
+	color: white;
+	height: 65px;
+}
+div#header li {
+	align-items: center;
+	justify-content: center;
+	margin-top: 30px;
+	padding-left: 10px;
+	color: white;
+}
+div#header li a {
+	margin: 0;
+	background: #0A6847;
+	color: white;
+	font-size: large;
+	font-weight: bold;
+	height: 65px;
+    text-decoration: none;
+}
+.underline {
+    border-bottom: 4px solid #F3CA52; /* or any color you prefer */
+    padding-bottom: 12px; /* Adjust padding as needed */
+}

@@ -52,34 +52,3 @@
     font-size: 18px;
     color: #666;
 }
-
-#header {
-	position: relative;
-	border-radius: 0px;
-}
-#header h1 {
-	height: 80px;
-	line-height: 80px;
-	margin: 0;
-	padding-left: 10px;
-	background: #0A6847;
-	color: white;
-	margin-left: 5%;
-	font-size:x-large;
-}
-#header nav {
-	position: relative;
-	display: flex;
-	list-style: none;
-	margin: 0;
-	padding-left: 10px;
-	background: #0A6847;
-	color: white;
-}
-#header li a {
-	margin: 0;
-	background: #0A6847;
-	color: white;
-	font-size: large;
-	font-weight: bold;
-}

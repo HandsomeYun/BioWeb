@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Graph from 'react-graph-vis';
 import '../style/HomePage.css';
 import NeuroImage from "./asset/image.png";
+import GlobalHeader from '../components/globalHeader'
 
 function HomePage() {
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [selectedSpecies, setSelectedSpecies] = useState('Human');
     const [graphDataSpp1, setGraphDataSpp1] = useState([]);
-    const [graphDataEntpd1, setGraphDataEntpd1] = useState([]);
-    const [graphDataC3, setGraphDataC3] = useState([]);
+    const [graphDataEntpd1, setGraphDataIcam1] = useState([]);
+    const [graphDataC3, setGraphDataFN1] = useState([]);
 
 
     const handleSelectionClick = () => {
@@ -32,8 +33,7 @@ function HomePage() {
         }
     };
     const fetchGraphData = (term, species, setSpecificGraphData) => {
-        const capitalizedSearchTerm = term.charAt(0).toUpperCase() + term.slice(1).toLowerCase();
-        const baseURL = `/api/findBySpecies/findByLigand?species=${species}&name=${capitalizedSearchTerm}`;
+        const baseURL = `/api/findBySpecies/findByLigand?species=${species}&name=${term}`;
         fetch(baseURL)
             .then(response => response.json())
             .then(data => {
@@ -51,9 +51,9 @@ function HomePage() {
                         const currentGraph = {
                             ligand_cell: cell,
                             nodes: [{
-                                id: capitalizedSearchTerm, 
-                                label: capitalizedSearchTerm, 
-                                title: capitalizedSearchTerm, 
+                                id: term, 
+                                label: term, 
+                                title: term, 
                                 color: '#25d970', 
                                 size: 50, 
                                 font: {
@@ -72,8 +72,8 @@ function HomePage() {
                             const edge2Str = `${item.receptor}->${item.receptor}-${item.receptor_cell}`;
                             const cellNodeId = `${item.receptor}-${item.receptor_cell}`;
     
-                            if (item.ligand === capitalizedSearchTerm) {
-                                if(item.FDR_Str_vs_Con.x != undefined){
+                            if (item.ligand === term) {
+                                if(item.FDR_Str_vs_Con.x !== undefined){
                                     nodes[0].title = `LogFC_Str_vs_Con.x: ${item.LogFC_Str_vs_Con.x} \nFDR_Str_vs_Con.x: ${item.FDR_Str_vs_Con.x}`;
                                 } else {
                                     nodes[0].title = `LogFC_Str_vs_Con.x: ${item.LogFC_Str_vs_Con.x}`;
@@ -110,7 +110,7 @@ function HomePage() {
                                         color = 'turquoise';
                                 }
                                 let title = '';
-                                if(item.FDR_Str_vs_Con.y != undefined){
+                                if(item.FDR_Str_vs_Con.y !== undefined){
                                     title = `LogFC_Str_vs_Con.y: ${item.LogFC_Str_vs_Con.y} \nFDR_Str_vs_Con.y: ${item.FDR_Str_vs_Con.y}`;
                                 } else {
                                     title = `LogFC_Str_vs_Con.y: ${item.LogFC_Str_vs_Con.y}`;
@@ -153,9 +153,9 @@ function HomePage() {
     
 
     useEffect(() => {
-        fetchGraphData("Spp1", "human", setGraphDataSpp1);
-        fetchGraphData("Entpd1", "human", setGraphDataEntpd1);
-        fetchGraphData("Fn1", "human", setGraphDataC3);
+        fetchGraphData("SPP1", "human", setGraphDataSpp1);
+        fetchGraphData("Icam1", "mouse", setGraphDataIcam1);
+        fetchGraphData("FN1", "human", setGraphDataFN1);
     }, []);
 
     const options = {            
@@ -210,13 +210,7 @@ function HomePage() {
         <>
             <div id="container">
                 <div id="header">
-                    <nav>
-                        <h1>WhiteMatterWiki</h1>
-                        <li><Link to='/'className='home-link'>Home</Link></li>
-                        <li><Link to='/RNAseq'className='RNAseq-link'>RNA-Seq</Link></li>
-                        <li><Link to='/Circos'className='Circos-link'>Circos</Link></li>
-                        <li><Link to='/Contact'className='contact-link'>Contact US</Link></li>
-                    </nav>
+                    <GlobalHeader page={{ text: 'home' }}/>
                 </div>
                 <div id="wrapper">
                     <div id="content">
@@ -268,7 +262,7 @@ function HomePage() {
                     <div id="card">
                         {graphDataEntpd1.length > 0 ? (
                             graphDataEntpd1
-                            .filter(graph => graph.ligand_cell === "Micro")
+                            .filter(graph => graph.ligand_cell === "Peri")
                             .map((graph, index) => (
                                 <div id="graph1" key={index}>
                                     <Graph graph={graph} options={options} />
@@ -281,7 +275,7 @@ function HomePage() {
                     <div id="card">
                         {graphDataSpp1.length > 0 ? (
                             graphDataSpp1
-                            .filter(graph => graph.ligand_cell === "Micro")
+                            .filter(graph => graph.ligand_cell === "OPC")
                             .map((graph, index) => (
                                 <div id="graph1" key={index}>
                                     <Graph graph={graph} options={options} />
@@ -294,7 +288,7 @@ function HomePage() {
                     <div id="card">
                         {graphDataC3.length > 0 ? (
                             graphDataC3
-                            .filter(graph => graph.ligand_cell === "Micro")
+                            .filter(graph => graph.ligand_cell === "Astro")
                             .map((graph, index) => (
                                 <div id="graph1" key={index}>
                                     <Graph graph={graph} options={options} />
@@ -316,7 +310,7 @@ function HomePage() {
                     </div>
                     <hr id="custom-hr"></hr>
                     <div id="footer2">
-                        Site By Yuqi Huang Yun Zhang
+                        Site By Yuqi Huang and Yun Zhang
                     </div>
                 </div>
             </div>

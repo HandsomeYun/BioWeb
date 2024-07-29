@@ -10,43 +10,9 @@ body {
 }
 body {
     overflow-y: scroll; /* will always show vertical scrollbars */
-  }
-div#header {
-	position: relative;
-	border-radius: 0px;
 }
-div#header h1 {
-	height: 80px;
-	line-height: 80px;
-	margin: 0;
-	padding-left: 10px;
-	background: #0A6847;
-	color: white;
-	margin-left: 5%;
-	font-size:x-large;
-}
-div#header nav {
-	position: relative;
-	display: flex;
-	list-style: none;
-	margin: 0;
-	padding-left: 10px;
-	background: #0A6847;
-	color: white;
-}
-div#header li {
-	align-items: center;
-	justify-content: center;
-	margin-top: 30px;
-	padding-left: 10px;
-	color: white;
-}
-div#header li a {
-	margin: 0;
-	background: #0A6847;
-	color: white;
-	font-size: large;
-	font-weight: bold;
+div#container {
+	background-color: #fffffff1;
 }
 div#extra {
 	display: flex;
@@ -69,7 +35,7 @@ div#extra #card #graph1{
     z-index: 10;
 }
 div#footer-wrapper{
-	background: #545854;
+	background: #dcdedc;
 }
 #footer1 {
     display: flex;
@@ -79,7 +45,7 @@ div#footer-wrapper{
     padding-bottom: 5px;
 	padding-left: 50px;
 	padding-right: 50px;
-    border-top: 2px solid rgb(64,64,64);
+    border-top: 1px solid rgb(203, 203, 203);
     font-family: "Old Standard TT";
 }
 
@@ -87,20 +53,23 @@ div#footer-wrapper{
     text-align: left;
     flex: 1;
 	padding-left: 1px;
-	color: #fff;
+	color: #767676;
 	font-size: 15px;
 }
 
 #footer1 .right {
-	color: #fff;
+	color: #767676;
     text-align: right;
     flex: 1;
 	padding-right: 10px;
 	font-size: 15px;
 }
-
+hr#custom-hr {
+	margin-left: 45px;
+	margin-right: 45px;
+}
 div#footer2 {
-	color: #fff;
+	color: #767676;
 	text-align: left;
 	font-family: "Old Standard TT";
 	padding-bottom: 10px;

@@ -3,8 +3,8 @@ div#header {
 	border-radius: 0px;
 }
 div#header h1 {
-	height: 80px;
-	line-height: 80px;
+	height: 65px;
+	line-height: 65px;
 	margin: 0;
 	padding-left: 10px;
 	background: #0A6847;
@@ -20,6 +20,7 @@ div#header nav {
 	padding-left: 10px;
 	background: #0A6847;
 	color: white;
+    height: 65px;
 }
 div#header li {
 	align-items: center;
@@ -59,12 +60,11 @@ div#subcontent {
     background: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .columns {
     display: flex;
     justify-content: space-between;
-    padding-left: 250px;
+    padding-left: 120px;
     padding-top: 50px;
     padding-bottom: 80px;
 }
@@ -79,7 +79,7 @@ div#subcontent {
     text-decoration: underline;
 }
 div#footer-wrapper-c{
-	background: #545854;
+	background: #dcdedc;
 }
 #footer1-c {
     display: flex;
@@ -89,7 +89,7 @@ div#footer-wrapper-c{
     padding-bottom: 5px;
 	padding-left: 50px;
 	padding-right: 50px;
-    border-top: 2px solid rgb(64,64,64);
+    border-top: 1px solid rgb(203, 203, 203);
     font-family: "Old Standard TT";
 }
 
@@ -97,20 +97,23 @@ div#footer-wrapper-c{
     text-align: left;
     flex: 1;
 	padding-left: 1px;
-	color: #fff;
+	color: #767676;
 	font-size: 15px;
 }
 
 #footer1-c .right {
-	color: #fff;
+	color: #767676;
     text-align: right;
     flex: 1;
 	padding-right: 10px;
 	font-size: 15px;
 }
-
+hr#custom-hr-c {
+	margin-left: 45px;
+	margin-right: 45px;
+}
 div#footer2-c {
-	color: #fff;
+	color: #767676;
 	text-align: left;
 	font-family: "Old Standard TT";
 	padding-bottom: 10px;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import '../style/Circos.css';
+import GlobalHeader from '../components/globalHeader'
 
 // Import the image from the asset folder
 import Astro_Mouse_hVaD from './asset/Identified_by_Mouse/Astro_Mouse_hVaD.png';
@@ -178,13 +178,7 @@ function CircosPage() {
     return (
         <>
             <div id="header">
-                <nav>
-                    <h1>WhiteMatterWiki</h1>
-                    <li><Link to='/'>Home</Link></li>
-                    <li><Link to='/RNAseq'>RNA-Seq</Link></li>
-                    <li><Link to='/Circos'>Circos</Link></li>
-                    <li><Link to='/Contact'>Contact US</Link ></li>
-                </nav>
+                <GlobalHeader page={{ text: 'Circos' }}/>
             </div>
             <div id="dropdown-container">
                 {renderVADButtons()}

@@ -1,17 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import GlobalHeader from '../components/globalHeader'
 
 function RNA_seq_Page(){
     return(
         <>
             <div id="header">
-                <nav>
-                    <h1>WhiteMatterWiki</h1>
-                    <li><Link to='/'>Home</Link></li>
-                    <li><Link to='/RNAseq'>RNA-Seq</Link></li>
-                    <li><Link to='/Circos'>Circos</Link></li>
-                    <li><Link to='/Contact'>Contact US</Link ></li>
-                </nav>
+                <GlobalHeader page={{ text: 'RNAseq' }}/>
             </div>
             <iframe
                 //src="https://whitematterdatapage.com/"

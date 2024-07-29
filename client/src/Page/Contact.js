@@ -1,20 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import '../style/Contact.css';
-
+import GlobalHeader from '../components/globalHeader'
 
 
 function Contact(){
     return(
         <>
             <div id="header">
-                <nav>
-                    <h1>WhiteMatterWiki</h1>
-                    <li><Link to='/'>Home</Link></li>
-                    <li><Link to='/RNAseq'>RNA-Seq</Link></li>
-                    <li><Link to='/Circos'>Circos</Link></li>
-                    <li><Link to='/Contact'>Contact US</Link ></li>
-                </nav>
+                <GlobalHeader page={{ text: 'Contact' }}/>
             </div>
             <div id="intro">
                 We'd Love to Hear From You
@@ -22,7 +15,7 @@ function Contact(){
             <div id="subcontent">
                 Contact us for more information, collaborations, or any questions you may have.
             </div>
-            <div classname="info">
+            <div className="info">
                 <div className='columns'>
                     <div className='column'>
                         <h3>For enquiries or commants regarding the web page, <br /> please contact:</h3>
@@ -49,7 +42,7 @@ function Contact(){
                             for questions concerning vascular dementia study, contact: tianmin1111@gmail.com
                         </div>
                     </div>
-                    <hr id="custom-hr"></hr>
+                    <hr id="custom-hr-c"></hr>
                     <div id="footer2-c">
                         Site By Yuqi Huang Yun Zhang
                     </div>
