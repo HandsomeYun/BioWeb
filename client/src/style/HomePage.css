@@ -185,6 +185,7 @@ div#extra {
 
 .box form .categories p:hover {
     background-color: #626eb3;
+    cursor: pointer;
 }
 
 .box form .active {
