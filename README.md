@@ -1,4 +1,4 @@
-# Document Visualization Web Application
+# WhiteMatterWiki
 
 This repository contains the source code for a web application designed to visualize and explore a large database of scientific documents. The application leverages modern web technologies to provide an interactive and engaging experience for users, enabling them to search, filter, and visualize complex relationships among ligands, receptors, and cells.
 
@@ -24,7 +24,6 @@ This repository contains the source code for a web application designed to visua
 - **Database:** MongoDB
 - **Visualization:** Java, R
 - **Deployment:** Nginx, PM2
-- **Cloud:** AWS
 
 ## Installation
 
@@ -39,5 +38,17 @@ To set up the project locally, follow these steps:
 2. **Install the dependencies:**
 
    ```bash
-   git clone https://github.com/HandsomeYun/BioWeb.git
-   cd BioWeb
+   npm install
+   ```
+3. **Start the development server:**
+  ```bash
+  npm run dev
+  ```
+4. **Deploy the frontend:**
+   ```bash
+   npm run build
+   ```
+5. **Manage the backend with PM2**
+   ```bash
+   pm2 start server.js
+   ```
