@@ -1,6 +1,7 @@
 # WhiteMatterWiki
 
 This repository contains the source code for a web application designed to visualize and explore a large database of scientific documents. The application leverages modern web technologies to provide an interactive and engaging experience for users, enabling them to search, filter, and visualize complex relationships among ligands, receptors, and cells.
+![image](https://github.com/user-attachments/assets/551e0c95-b633-4559-ac04-0d8ae262dbdf)
 
 ## Features
 
